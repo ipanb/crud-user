@@ -1,9 +1,9 @@
 <?php
 // Konfigurasi database
-$host = 'localhost';
-$dbname = 'crud_user';
-$username = 'root';
-$password = '';
+$host = getenv('DB_HOST') ?: 'db';
+$dbname = getenv('DB_NAME') ?: 'crud_user';
+$username = getenv('DB_USER') ?: 'root';
+$password = getenv('DB_PASS') ?: 'rootpassword';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
