@@ -92,11 +92,66 @@ docker-compose exec -T db mysql -u root -prootpassword crud_user < backup.sql
 
 ## Troubleshooting
 
-### Docker Desktop tidak berjalan
+### Docker tidak terinstall di VPS
 ```
-Error: error during connect: Get "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine...
+Error: docker: command not found
 ```
-**Solusi**: Start Docker Desktop dari Start Menu
+**Solusi**: 
+```bash
+# Jalankan script instalasi Docker
+chmod +x install-docker.sh
+./install-docker.sh
+
+# Atau install manual
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+
+### Docker Compose tidak ditemukan
+```
+Error: docker-compose: command not found
+```
+**Solusi**: Script `deploy.sh` akan otomatis detect dan install Docker Compose, atau:
+```bash
+# Untuk Docker Compose plugin (recommended)
+sudo apt-get install docker-compose-plugin
+
+# Untuk Docker Compose standalone
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+### Permission denied di VPS
+```
+Error: permission denied while trying to connect to Docker daemon
+```
+**Solusi**:
+```bash
+# Tambah user ke docker group
+sudo usermod -aG docker $USER
+
+# Logout dan login kembali, atau:
+newgrp docker
+
+# Atau gunakan sudo
+sudo docker-compose up -d
+```
+
+### Docker service tidak berjalan
+```
+Error: Cannot connect to the Docker daemon
+```
+**Solusi**:
+```bash
+# Start Docker service
+sudo systemctl start docker
+
+# Enable auto-start
+sudo systemctl enable docker
+
+# Check status
+sudo systemctl status docker
+```
 
 ### Port sudah digunakan
 ```

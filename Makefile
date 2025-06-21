@@ -1,55 +1,62 @@
 # Makefile for CRUD User Docker Management
 
+# Detect docker compose command
+DOCKER_COMPOSE := $(shell which docker-compose 2>/dev/null)
+ifndef DOCKER_COMPOSE
+	DOCKER_COMPOSE := docker compose
+endif
+
 .PHONY: help build up down restart logs clean
 
 # Default target
 help: ## Show this help message
 	@echo "CRUD User Docker Management"
 	@echo "=========================="
+	@echo "Using: $(DOCKER_COMPOSE)"
 	@echo "Available commands:"
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  %-12s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 build: ## Build and start containers
 	@echo "🔨 Building and starting containers..."
-	@docker-compose up --build -d
+	@$(DOCKER_COMPOSE) up --build -d
 	@echo "✅ Containers started successfully!"
 
 up: ## Start containers (without build)
 	@echo "🚀 Starting containers..."
-	@docker-compose up -d
+	@$(DOCKER_COMPOSE) up -d
 	@echo "✅ Containers started!"
 
 down: ## Stop and remove containers
 	@echo "⏹️ Stopping containers..."
-	@docker-compose down
+	@$(DOCKER_COMPOSE) down
 	@echo "✅ Containers stopped!"
 
 restart: ## Restart containers
 	@echo "🔄 Restarting containers..."
-	@docker-compose restart
+	@$(DOCKER_COMPOSE) restart
 	@echo "✅ Containers restarted!"
 
 logs: ## Show container logs
-	@docker-compose logs -f
+	@$(DOCKER_COMPOSE) logs -f
 
 logs-app: ## Show app container logs
-	@docker-compose logs -f app
+	@$(DOCKER_COMPOSE) logs -f app
 
 logs-db: ## Show database container logs
-	@docker-compose logs -f db
+	@$(DOCKER_COMPOSE) logs -f db
 
 status: ## Show container status
-	@docker-compose ps
+	@$(DOCKER_COMPOSE) ps
 
 shell-app: ## Access app container shell
-	@docker-compose exec app sh
+	@$(DOCKER_COMPOSE) exec app sh
 
 shell-db: ## Access database shell
-	@docker-compose exec db mysql -u root -prootpassword crud_user
+	@$(DOCKER_COMPOSE) exec db mysql -u root -prootpassword crud_user
 
 clean: ## Stop containers and remove volumes
 	@echo "🧹 Cleaning up containers and volumes..."
-	@docker-compose down -v
+	@$(DOCKER_COMPOSE) down -v
 	@docker system prune -f
 	@echo "✅ Cleanup completed!"
 
@@ -67,5 +74,5 @@ deploy: setup ## Full deployment (alias for setup)
 
 dev: ## Start development environment
 	@echo "🛠️ Starting development environment..."
-	@docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build -d
+	@$(DOCKER_COMPOSE) -f docker-compose.yml -f docker-compose.override.yml up --build -d
 	@echo "✅ Development environment ready!"
