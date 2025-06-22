@@ -4,10 +4,10 @@ FROM dunglas/frankenphp
 RUN install-php-extensions pdo_mysql mysqli intl gd
 
 # Copy your application files
-COPY . /app
+COPY . /app/public
 
 # Set working directory
-WORKDIR /app
+WORKDIR /app/public
 
 # Install PHP dependencies if composer.json exists
 RUN if [ -f composer.json ]; then \
@@ -15,10 +15,7 @@ RUN if [ -f composer.json ]; then \
     fi
 
 # Set proper permissions
-RUN chown -R www-data:www-data /app
+RUN chown -R www-data:www-data /app/public
 
 # Expose port
 EXPOSE 80 443
-
-# Start FrankenPHP
-CMD ["frankenphp", "run"]
