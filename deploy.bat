@@ -57,7 +57,6 @@ echo ====================================
 echo          Access Information
 echo ====================================
 echo 🌐 Main Application: http://localhost:8080
-echo 🗄️  phpMyAdmin:     http://localhost:8081
 echo.
 echo ====================================
 echo        Database Information  
@@ -73,6 +72,7 @@ echo ====================================
 echo 📊 View logs:    docker-compose logs -f
 echo ⏹️  Stop:        docker-compose down
 echo 🔄 Restart:     docker-compose restart
+echo 🗄️  Access DB:   docker-compose exec db mysql -u root -prootpassword crud_user
 echo 🧹 Clean up:    docker-compose down -v
 echo.
 

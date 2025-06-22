@@ -44,10 +44,10 @@ docker-compose logs -f
 
 ### 3. Akses Aplikasi
 - **Main App**: http://localhost:8080
-- **phpMyAdmin**: http://localhost:8081
-  - Server: db
-  - Username: root
-  - Password: rootpassword
+- **Database**: Akses melalui command line
+  ```bash
+  docker-compose exec db mysql -u root -prootpassword crud_user
+  ```
 
 ## Management Commands
 

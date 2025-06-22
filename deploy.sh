@@ -63,7 +63,38 @@ fi
 echo "🔨 Building and starting containers..."
 echo "This may take a few minutes on first run..."
 $DOCKER_COMPOSE down > /dev/null 2>&1
-$DOCKER_COMPOSE up --build -d
+
+# Try to build with retry mechanism
+echo "Attempting to build containers..."
+if ! $DOCKER_COMPOSE up --build -d; then
+    echo "❌ Build failed with primary configuration"
+    
+    # Check if alternative Dockerfile exists
+    if [ -f "Dockerfile.alternative" ]; then
+        echo "🔄 Trying alternative configuration..."
+        # Create temporary docker-compose file with alternative Dockerfile
+        sed 's|build: \.|build:\n      context: .\n      dockerfile: Dockerfile.alternative|' docker-compose.yml > docker-compose.temp.yml
+        
+        if $DOCKER_COMPOSE -f docker-compose.temp.yml up --build -d; then
+            echo "✅ Alternative build successful!"
+            rm docker-compose.temp.yml
+        else
+            echo "❌ Alternative build also failed!"
+            rm docker-compose.temp.yml
+            echo ""
+            echo "💡 Troubleshooting suggestions:"
+            echo "   1. Check Docker is running: docker info"
+            echo "   2. Check available disk space: df -h"
+            echo "   3. Try manual build: ./build-selector.sh"
+            echo "   4. View detailed logs: $DOCKER_COMPOSE logs"
+            exit 1
+        fi
+    else
+        echo "❌ No alternative configuration available"
+        echo "Build failed. Please check the error messages above."
+        exit 1
+    fi
+fi
 
 # Check if deployment was successful
 if [ $? -eq 0 ]; then
@@ -87,7 +118,6 @@ echo "✅ Deployment completed!"
 echo ""
 echo "🌐 Access your application:"
 echo "   - Main App: http://localhost:8080"
-echo "   - phpMyAdmin: http://localhost:8081"
 echo ""
 echo "📊 Database Information:"
 echo "   - Host: localhost:3307"
@@ -99,3 +129,4 @@ echo "🐳 Docker commands:"
 echo "   - View logs: $DOCKER_COMPOSE logs -f"
 echo "   - Stop: $DOCKER_COMPOSE down"
 echo "   - Restart: $DOCKER_COMPOSE restart"
+echo "   - Access DB: $DOCKER_COMPOSE exec db mysql -u root -prootpassword crud_user"

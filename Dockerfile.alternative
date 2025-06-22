@@ -1,0 +1,41 @@
+# Alternative Dockerfile using official PHP image
+FROM php:8.2-fpm-alpine
+
+# Install system dependencies
+RUN apk add --no-cache \
+    nginx \
+    supervisor \
+    curl \
+    zip \
+    unzip
+
+# Install PHP extensions
+RUN docker-php-ext-install \
+    pdo_mysql \
+    mysqli \
+    opcache \
+    gd
+
+# Copy nginx configuration
+COPY docker/nginx/nginx-simple.conf /etc/nginx/nginx.conf
+
+# Copy supervisor configuration  
+COPY docker/supervisor/supervisord-simple.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Copy application files
+COPY . /var/www/html
+
+# Set proper permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
+
+# Create required directories
+RUN mkdir -p /var/log/supervisor \
+    && mkdir -p /var/log/nginx \
+    && mkdir -p /run/nginx
+
+# Expose port 80
+EXPOSE 80
+
+# Start supervisor
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

@@ -24,3 +24,7 @@ services:
       --character-set-server=utf8mb4
       --collation-server=utf8mb4_unicode_ci
       --sql-mode=STRICT_TRANS_TABLES,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO
+    # Enable MySQL general log for debugging
+    environment:
+      - MYSQL_GENERAL_LOG=1
+      - MYSQL_GENERAL_LOG_FILE=/var/lib/mysql/general.log

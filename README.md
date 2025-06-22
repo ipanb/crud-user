@@ -42,7 +42,6 @@ Aplikasi CRUD (Create, Read, Update, Delete) untuk manajemen user menggunakan PH
 
 3. **Akses aplikasi:**
    - Main App: http://localhost:8080
-   - phpMyAdmin: http://localhost:8081
 
 📖 **Dokumentasi Docker lengkap**: [DOCKER.md](DOCKER.md)
 
@@ -56,6 +55,9 @@ docker-compose logs -f
 
 # Stop containers
 docker-compose down
+
+# Akses database
+docker-compose exec db mysql -u root -prootpassword crud_user
 ```
 
 ## 📝 Instalasi Manual (Tanpa Docker)
@@ -99,9 +101,8 @@ docker-compose down
 
 ## 🐳 Docker Services
 
-- **app**: PHP 8.2-FPM + Nginx web server
+- **app**: PHP 8.1-FPM + Nginx web server
 - **db**: MySQL 8.0 database
-- **phpmyadmin**: Database management interface
 
 ## Cara Menggunakan
 
@@ -109,7 +110,7 @@ docker-compose down
 2. Gunakan tombol "Tambah User" untuk menambah user baru
 3. Klik icon edit (kuning) untuk mengubah data user
 4. Klik icon hapus (merah) untuk menghapus user
-5. Akses phpMyAdmin di `http://localhost:8081` untuk manajemen database
+5. Untuk akses database: `docker-compose exec db mysql -u root -prootpassword crud_user`
 
 ## Teknologi yang Digunakan
 
@@ -126,7 +127,6 @@ docker-compose down
 ### Services Configuration
 - **App Container**: Port 8080 (Nginx + PHP-FPM)
 - **Database Container**: Port 3307 (MySQL)
-- **phpMyAdmin Container**: Port 8081
 
 ### Environment Variables
 Buat file `.env` dari `.env.example` dan sesuaikan:

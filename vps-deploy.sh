@@ -197,7 +197,6 @@ if [[ $SETUP_PROXY =~ ^[Yy]$ ]]; then
 else
     echo "   - Main App: http://$SERVER_IP:8080"
 fi
-echo "   - phpMyAdmin: http://$SERVER_IP:8081"
 echo ""
 echo "📊 Database Info:"
 echo "   - Host: $SERVER_IP:3307"
@@ -209,6 +208,7 @@ echo "🔧 Management Commands:"
 echo "   - View logs: docker compose logs -f"
 echo "   - Stop app:  docker compose down"
 echo "   - Restart:   docker compose restart"
+echo "   - Access DB: docker compose exec db mysql -u root -p crud_user"
 echo ""
 print_warning "Make sure to secure your server and change default passwords!"
 print_info "Application is now running on your VPS!"

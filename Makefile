@@ -68,7 +68,9 @@ setup: ## Initial setup (copy .env and build)
 	@echo ""
 	@echo "🌐 Access your application:"
 	@echo "   - Main App: http://localhost:8080"
-	@echo "   - phpMyAdmin: http://localhost:8081"
+	@echo ""
+	@echo "🗄️ Database access:"
+	@echo "   - Command: make shell-db"
 
 deploy: setup ## Full deployment (alias for setup)
 
