@@ -54,17 +54,11 @@ services:
   frankenphp:
     image: dunglas/frankenphp:php8.3
     container_name: frankenphp_server
+    args:
+      - PHP_EXTENSIONS=pdo_mysql,gd,mbstring,mysqli,zip
     ports:
       - "8090:80"
       - "8443:443"
-    command:
-      - |
-        install-php-extensions \
-        pdo_mysql \
-        gd \
-        intl \
-        zip \
-      opcache
     volumes:
       - ./src:/app/public
       - ./frankenphp/Caddyfile:/etc/caddy/Caddyfile
