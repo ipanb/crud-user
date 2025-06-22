@@ -52,10 +52,12 @@ services:
   
     # FrankenPHP Server
   frankenphp:
-    image: dunglas/frankenphp:php8.3
+    build:
+      context: .
+      dockerfile: Dockerfile.frankenphp
     container_name: frankenphp_server
-    args:
-      - PHP_EXTENSIONS=pdo_mysql,gd,mbstring,mysqli,zip
+    environment:
+      - SERVER_NAME=:80
     ports:
       - "8090:80"
       - "8443:443"
@@ -63,8 +65,6 @@ services:
       - ./src:/app/public
       - ./frankenphp/Caddyfile:/etc/caddy/Caddyfile
       - ./frankenphp/php.ini:/usr/local/etc/php/php.ini
-    environment:
-      - SERVER_NAME=:80
     networks:
       - app-network
     depends_on:

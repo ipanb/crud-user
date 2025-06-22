@@ -1,0 +1,24 @@
+FROM dunglas/frankenphp
+
+# Install MySQL, intl, and gd extensions
+RUN install-php-extensions pdo_mysql mysqli intl gd
+
+# Copy your application files
+COPY . /app
+
+# Set working directory
+WORKDIR /app
+
+# Install PHP dependencies if composer.json exists
+RUN if [ -f composer.json ]; then \
+    composer install --no-dev --optimize-autoloader; \
+    fi
+
+# Set proper permissions
+RUN chown -R www-data:www-data /app
+
+# Expose port
+EXPOSE 80 443
+
+# Start FrankenPHP
+CMD ["frankenphp", "run"]
