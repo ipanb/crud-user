@@ -1,9 +1,9 @@
 <?php
 // Konfigurasi database
-$host = getenv('DB_HOST') ?: 'db';
-$dbname = getenv('DB_NAME') ?: 'crud_user';
-$username = getenv('DB_USER') ?: 'root';
-$password = getenv('DB_PASS') ?: 'rootpassword';
+$host = 'mysql';  // Nama container MySQL
+$dbname = 'app_database';
+$username = 'app_user';
+$password = 'app_password_123';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
