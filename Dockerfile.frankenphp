@@ -1,21 +1,31 @@
-FROM dunglas/frankenphp
+FROM dunglas/frankenphp:latest
 
-# Install MySQL, intl, and gd extensions
-RUN install-php-extensions pdo_mysql mysqli intl gd
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    zip \
+    unzip \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy your application files
-COPY . /app/public
+# Install PHP extensions
+RUN install-php-extensions \
+    pdo \
+    pdo_mysql \
+    mysqli \
+    zip \
+    opcache \
+    intl \
+    bcmath \
+    gd \
+    curl \
+    json
 
 # Set working directory
-WORKDIR /app/public
+WORKDIR /app
 
-# Install PHP dependencies if composer.json exists
-RUN if [ -f composer.json ]; then \
-    composer install --no-dev --optimize-autoloader; \
-    fi
+# Copy application files
+COPY ./src /app/public
 
 # Set proper permissions
-RUN chown -R www-data:www-data /app/public
-
-# Expose port
-EXPOSE 80 443
+RUN chown -R www-data:www-data /app/public \
+    && chmod -R 755 /app/public
