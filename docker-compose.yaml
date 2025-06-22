@@ -57,6 +57,14 @@ services:
     ports:
       - "8090:80"
       - "8443:443"
+    command:
+      - |
+        install-php-extensions \
+        pdo_mysql \
+        gd \
+        intl \
+        zip \
+      opcache
     volumes:
       - ./src:/app/public
       - ./frankenphp/Caddyfile:/etc/caddy/Caddyfile
