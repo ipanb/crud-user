@@ -13,13 +13,11 @@ require_once 'header.php';
             <div class="card-header bg-primary text-white">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h5 class="mb-0">
-                            <i class="fas fa-users me-2"></i>Data User
-                        </h5>
+                        <h5 class="mb-0">Data User</h5>
                     </div>
                     <div class="col-auto">
                         <a href="create.php" class="btn btn-light btn-sm">
-                            <i class="fas fa-plus me-1"></i>Tambah User
+                            Tambah User
                         </a>
                     </div>
                 </div>
@@ -27,11 +25,10 @@ require_once 'header.php';
             <div class="card-body">
                 <?php if (empty($users)): ?>
                     <div class="text-center py-5">
-                        <i class="fas fa-users fa-3x text-muted mb-3"></i>
                         <h5 class="text-muted">Belum ada data user</h5>
                         <p class="text-muted">Silakan tambah user baru untuk memulai</p>
                         <a href="create.php" class="btn btn-primary">
-                            <i class="fas fa-plus me-1"></i>Tambah User Pertama
+                            Tambah User Pertama
                         </a>
                     </div>
                 <?php else: ?>
@@ -48,22 +45,19 @@ require_once 'header.php';
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($users as $user): ?>
+                                <?php while ($user = $users->fetch()): ?>
                                     <tr>
                                         <td><span class="badge bg-secondary"><?= $user['id'] ?></span></td>
                                         <td>
                                             <strong><?= htmlspecialchars($user['nama']) ?></strong>
                                         </td>
                                         <td>
-                                            <i class="fas fa-phone text-muted me-1"></i>
                                             <?= htmlspecialchars($user['no_telepon']) ?>
                                         </td>
                                         <td>
-                                            <i class="fas fa-envelope text-muted me-1"></i>
                                             <?= htmlspecialchars($user['email']) ?>
                                         </td>
                                         <td>
-                                            <i class="fas fa-map-marker-alt text-muted me-1"></i>
                                             <?= htmlspecialchars($user['alamat']) ?>
                                         </td>
                                         <td class="text-center">
@@ -71,24 +65,23 @@ require_once 'header.php';
                                                 <a href="edit.php?id=<?= $user['id'] ?>" 
                                                    class="btn btn-warning btn-action" 
                                                    title="Edit">
-                                                    <i class="fas fa-edit"></i>
+                                                    Edit
                                                 </a>
                                                 <button onclick="confirmDelete(<?= $user['id'] ?>, '<?= htmlspecialchars($user['nama']) ?>')" 
                                                         class="btn btn-danger btn-action" 
                                                         title="Hapus">
-                                                    <i class="fas fa-trash"></i>
+                                                    Hapus
                                                 </button>
                                             </div>
                                         </td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php endwhile; ?>
                             </tbody>
                         </table>
                     </div>
                     
                     <div class="card-footer bg-light">
                         <small class="text-muted">
-                            <i class="fas fa-info-circle me-1"></i>
                             Total: <?= count($users) ?> user
                         </small>
                     </div>

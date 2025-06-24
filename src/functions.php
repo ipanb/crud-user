@@ -5,7 +5,7 @@ require_once 'config.php';
 // Fungsi untuk mengambil semua user
 function getAllUsers($pdo) {
     $stmt = $pdo->query("SELECT * FROM users ORDER BY id DESC");
-    return $stmt->fetchAll();
+    return $stmt;
 }
 
 // Fungsi untuk mengambil user berdasarkan ID
