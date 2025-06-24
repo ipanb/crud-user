@@ -33,7 +33,7 @@ require_once 'header.php';
                     </div>
                 <?php else: ?>
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover mb-0">
+                        <table id="dataTable" class="table table-striped table-hover mb-0">
                             <thead>
                                 <tr>
                                     <th style="width: 60px;">ID</th>
@@ -78,12 +78,6 @@ require_once 'header.php';
                                 <?php endwhile; ?>
                             </tbody>
                         </table>
-                    </div>
-                    
-                    <div class="card-footer bg-light">
-                        <small class="text-muted">
-                            Total: <?= count($users) ?> user
-                        </small>
                     </div>
                 <?php endif; ?>
             </div>
