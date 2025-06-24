@@ -45,36 +45,40 @@ require_once 'header.php';
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $number = 1; ?>
                                 <?php while ($user = $users->fetch()): ?>
-                                    <tr>
-                                        <td><span class="badge bg-secondary"><?= $user['id'] ?></span></td>
-                                        <td>
-                                            <strong><?= htmlspecialchars($user['nama']) ?></strong>
-                                        </td>
-                                        <td>
-                                            <?= htmlspecialchars($user['no_telepon']) ?>
-                                        </td>
-                                        <td>
-                                            <?= htmlspecialchars($user['email']) ?>
-                                        </td>
-                                        <td>
-                                            <?= htmlspecialchars($user['alamat']) ?>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group" role="group">
-                                                <a href="edit.php?id=<?= $user['id'] ?>" 
-                                                   class="btn btn-warning btn-action" 
-                                                   title="Edit">
-                                                    Edit
-                                                </a>
-                                                <button onclick="confirmDelete(<?= $user['id'] ?>, '<?= htmlspecialchars($user['nama']) ?>')" 
-                                                        class="btn btn-danger btn-action" 
+                                    <?php if ($number < 1000) : ?>
+                                        <tr>
+                                            <td><span class="badge bg-secondary"><?= $user['id'] ?></span></td>
+                                            <td>
+                                                <strong><?= htmlspecialchars($user['nama']) ?></strong>
+                                            </td>
+                                            <td>
+                                                <?= htmlspecialchars($user['no_telepon']) ?>
+                                            </td>
+                                            <td>
+                                                <?= htmlspecialchars($user['email']) ?>
+                                            </td>
+                                            <td>
+                                                <?= htmlspecialchars($user['alamat']) ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="btn-group" role="group">
+                                                    <a href="edit.php?id=<?= $user['id'] ?>"
+                                                        class="btn btn-warning btn-action"
+                                                        title="Edit">
+                                                        Edit
+                                                    </a>
+                                                    <button onclick="confirmDelete(<?= $user['id'] ?>, '<?= htmlspecialchars($user['nama']) ?>')"
+                                                        class="btn btn-danger btn-action"
                                                         title="Hapus">
-                                                    Hapus
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                        Hapus
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endif ?>
+                                    <?php $number++; ?>
                                 <?php endwhile; ?>
                             </tbody>
                         </table>
