@@ -30,4 +30,4 @@ COPY ./src /app/public
 RUN chown -R www-data:www-data /app/public \
     && chmod -R 755 /app/public
 
-ENV FRANKENPHP_CONFIG="worker /app/public/functions.php"
+ENV FRANKENPHP_CONFIG="worker /app/public/worker.php"
