@@ -45,20 +45,6 @@ services:
       interval: 10s
       start_period: 40s
     restart: unless-stopped
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin_frankenphp
-    environment:
-      PMA_HOST: mysql
-      PMA_PORT: 3306
-      PMA_USER: your_username
-      PMA_PASSWORD: your_password
-    ports:
-      - "8081:80"  # Port eksternal berbeda agar tidak konflik
-    depends_on:
-      - mysql
-    networks:
-      - frankenphp-network
-    restart: unless-stopped
 
 # Volume untuk data MySQL dengan nama spesifik
 volumes:
