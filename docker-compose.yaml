@@ -4,6 +4,14 @@ services:
   # Web Server (Nginx)
   nginx:
     image: nginx:alpine
+    deploy:
+      resources:
+        limits:
+          cpus: '3.6'
+          memory: 6.3G
+        reservations:
+          cpus: '0.25'
+          memory: 256M
     container_name: nginx_server
     ports:
       - "80:80"
@@ -21,6 +29,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    deploy:
+      resources:
+        limits:
+          cpus: '3.6'
+          memory: 6.3G
+        reservations:
+          cpus: '0.25'
+          memory: 256M
     container_name: php_app
     volumes:
       - ./src:/var/www/html
@@ -36,6 +52,14 @@ services:
   mysql:
     image: mysql:8.0
     container_name: mysql_db
+    deploy:
+      resources:
+        limits:
+          cpus: '3.6'
+          memory: 6.3G
+        reservations:
+          cpus: '0.25'
+          memory: 256M
     environment:
       MYSQL_ROOT_PASSWORD: root_password_123
       MYSQL_DATABASE: app_database
