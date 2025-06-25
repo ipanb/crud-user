@@ -30,5 +30,5 @@ COPY ./src /app/public
 RUN chown -R www-data:www-data /app/public \
     && chmod -R 755 /app/public
 
-ENV FRANKENPHP_CONFIG="worker ./public/index.ph"
+ENV FRANKENPHP_CONFIG="worker ./public/index.php"
 ENV APP_RUNTIME="Runtime\\FrankenPhpSymfony\\Runtime"
