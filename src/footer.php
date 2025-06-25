@@ -9,17 +9,6 @@
 
         <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-            <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-     
-            });
-            const dataTable = new simpleDatatables.DataTable("#dataTable", {
-                // Opsi tambahan bisa diletakkan di sini
-                // Contoh: menonaktifkan pencarian
-                // search: false
-            });
-        </script>
         <script>
             // Konfirmasi hapus
             function confirmDelete(id, nama) {

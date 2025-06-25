@@ -49,22 +49,6 @@ services:
       - app-network
     restart: unless-stopped
     
-  # phpMyAdmin (Optional - untuk management database)
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    environment:
-      PMA_HOST: mysql
-      PMA_PORT: 3306
-      PMA_USER: app_user
-      PMA_PASSWORD: app_password_123
-    ports:
-      - "8080:80"
-    depends_on:
-      - mysql
-    networks:
-      - app-network
-    restart: unless-stopped
 
 volumes:
   mysql_data:

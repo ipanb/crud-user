@@ -47,7 +47,9 @@ require_once 'header.php';
                             <tbody>
                                 <?php $number = 1; ?>
                                 <?php while ($user = $users->fetch()): ?>
-                                    <?php if ($number < 1000) : ?>
+                                    <?php if($number > 1000) {
+                                        break;
+                                        }?>
                                         <tr>
                                             <td><span class="badge bg-secondary"><?= $user['id'] ?></span></td>
                                             <td>
@@ -77,7 +79,6 @@ require_once 'header.php';
                                                 </div>
                                             </td>
                                         </tr>
-                                    <?php endif ?>
                                     <?php $number++; ?>
                                 <?php endwhile; ?>
                             </tbody>
