@@ -37,12 +37,12 @@ services:
     image: mysql:8.0
     deploy:
       resources:
-      limits:
-        memory: 1G
-        cpus: '0.8'
-      reservations:
-        memory: 512M
-        cpus: '0.25'
+        limits:
+          memory: 1G
+          cpus: '0.8'
+        reservations:
+          memory: 512M
+          cpus: '0.25'
     container_name: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: root_password_123
