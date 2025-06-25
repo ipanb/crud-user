@@ -1,7 +1,7 @@
 {
     # Global options
     frankenphp {
-        num_threads 4
+        num_threads 8
         worker "./worker.php" 
     }
 
