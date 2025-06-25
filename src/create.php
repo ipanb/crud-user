@@ -15,20 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "Nama tidak boleh kosong";
     }
     
-    if (empty($no_telepon)) {
-        $errors[] = "Nomor telepon tidak boleh kosong";
-    } elseif (!isValidPhone($no_telepon)) {
-        $errors[] = "Format nomor telepon tidak valid";
-    }
-    
-    if (empty($email)) {
-        $errors[] = "Email tidak boleh kosong";
-    } elseif (!isValidEmail($email)) {
-        $errors[] = "Format email tidak valid";
-    } elseif (isEmailExists($pdo, $email)) {
-        $errors[] = "Email sudah digunakan";
-    }
-    
     if (empty($alamat)) {
         $errors[] = "Alamat tidak boleh kosong";
     }
