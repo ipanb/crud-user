@@ -1,7 +1,8 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.2-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
+    procps \
     git \
     curl \
     libpng-dev \
@@ -32,7 +33,6 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Set working directory
 WORKDIR /var/www/html
-RUN apk add --no-cache procps
 
 # Copy existing application directory contents
 COPY ./src /var/www/html
