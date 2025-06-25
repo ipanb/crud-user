@@ -2,9 +2,9 @@
     # Global options
     frankenphp {
         num_threads 4
+        worker "./worker.php" 
     }
 
-    worker "./worker.php" 
     
     # Auto HTTPS off untuk development
     auto_https off

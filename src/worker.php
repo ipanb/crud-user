@@ -17,7 +17,7 @@ echo "PHP Worker siap menerima permintaan...\n";
 // 2. MASUK KE DALAM REQUEST LOOP (Dijalankan untuk setiap permintaan)
 // =================================================================
 // Fungsi \FrankenPhp\loop() akan menangani permintaan HTTP yang masuk.
-// while (\FrankenPhp\loop()) {
+while (\FrankenPhp\loop()) {
     // Di dalam loop, kita perlu mensimulasikan lingkungan PHP yang "bersih"
     // seolah-olah ini adalah permintaan baru.
 
@@ -55,6 +55,6 @@ echo "PHP Worker siap menerima permintaan...\n";
             echo 'Halaman yang diminta tidak ditemukan.';
             break;
     }
-// }
+}
 
 // Kode setelah loop ini tidak akan pernah dijalankan
