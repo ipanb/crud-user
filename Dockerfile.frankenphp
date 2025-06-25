@@ -29,3 +29,5 @@ COPY ./src /app/public
 # Set proper permissions
 RUN chown -R www-data:www-data /app/public \
     && chmod -R 755 /app/public
+
+ENV FRANKENPHP_CONFIG="worker /app/public/index.php"
