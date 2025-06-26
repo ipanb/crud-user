@@ -23,9 +23,8 @@ do {
             // Dapatkan path dari permintaan, contoh: '/', '/create.php', '/edit.php?id=1'
             $requestUri = $_SERVER['REQUEST_URI'];
             $path = parse_url($requestUri, PHP_URL_PATH);
-        
-            // Routing Sederhana berdasarkan struktur file Anda
-            // Ini akan menjalankan file yang sesuai dengan URL yang diakses.
+            $pathSegments = explode('/', trim($path, '/'));
+            $path = end($pathSegments) ?: '/';
             switch ($path) {
                 case '':
                 case '/':
