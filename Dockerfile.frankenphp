@@ -13,7 +13,6 @@ RUN install-php-extensions \
     pdo_mysql \
     mysqli \
     zip \
-    opcache \
     intl \
     bcmath \
     gd \
