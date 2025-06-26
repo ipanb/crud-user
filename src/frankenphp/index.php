@@ -27,21 +27,22 @@ do {
             // Routing Sederhana berdasarkan struktur file Anda
             // Ini akan menjalankan file yang sesuai dengan URL yang diakses.
             switch ($path) {
+                case '':
                 case '/':
-                case '/index.php':
-                    require __DIR__ . '/index.php';
+                case '/index':
+                    require __DIR__ . 'pages/index.php';
                     break;
         
-                case '/create.php':
-                    require __DIR__ . '/create.php';
+                case '/create':
+                    require __DIR__ . 'pages/create.php';
                     break;
                     
-                case '/edit.php':
-                    require __DIR__ . '/edit.php';
+                case '/edit':
+                    require __DIR__ . 'pages/edit.php';
                     break;
         
-                case '/delete.php':
-                    require __DIR__ . '/delete.php';
+                case '/delet':
+                    require __DIR__ . 'pages/delete.php';
                     break;
                 
                 // Tambahkan case lain jika ada file lain yang perlu diakses langsung
