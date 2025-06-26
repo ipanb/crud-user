@@ -24,24 +24,25 @@ do {
             $requestUri = $_SERVER['REQUEST_URI'];
             $path = parse_url($requestUri, PHP_URL_PATH);
             $pathSegments = explode('/', trim($path, '/'));
-            $path = end($pathSegments) ?: '/';
+            $path = '/' . (end($pathSegments) ?: '');
+            
             switch ($path) {
                 case '':
                 case '/':
                 case '/index':
-                    require __DIR__ . 'pages/index.php';
+                    require __DIR__ . '/pages/index.php';
                     break;
         
                 case '/create':
-                    require __DIR__ . 'pages/create.php';
+                    require __DIR__ . '/pages/create.php';
                     break;
                     
                 case '/edit':
-                    require __DIR__ . 'pages/edit.php';
+                    require __DIR__ . '/pages/edit.php';
                     break;
         
                 case '/delet':
-                    require __DIR__ . 'pages/delete.php';
+                    require __DIR__ . '/pages/delete.php';
                     break;
                 
                 // Tambahkan case lain jika ada file lain yang perlu diakses langsung
