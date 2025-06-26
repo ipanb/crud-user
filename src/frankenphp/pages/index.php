@@ -1,10 +1,7 @@
 <?php
 // Ambil semua data user
-global $pdo;
-if(!isset($pdo)) {
-    $pdo = connectDatabase();
-}
-$users = getAllUsers($pdo);
+
+$users = getAllUsers();
 
 include 'header.php';
 ?>
