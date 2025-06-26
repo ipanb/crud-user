@@ -1,4 +1,9 @@
 <?php
+// Ambil semua data user
+global $pdo;
+if(!isset($pdo)) {
+    $pdo = connectDatabase();
+}
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

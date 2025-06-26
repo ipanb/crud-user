@@ -1,5 +1,10 @@
 <?php
 // Cek apakah ID ada
+// Ambil semua data user
+global $pdo;
+if(!isset($pdo)) {
+    $pdo = connectDatabase();
+}
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     setMessage('danger', 'ID user tidak valid');
     header('Location: index.php');
