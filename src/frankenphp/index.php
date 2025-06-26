@@ -23,7 +23,7 @@ do {
             $path = parse_url($requestUri, PHP_URL_PATH);
             $pathSegments = explode('/', trim($path, '/'));
             $path = '/' . (end($pathSegments) ?: '');
-            require __DIR__ . '/functions.php';
+            require_once __DIR__ . '/functions.php';
             
             switch ($path) {
                 case '':
