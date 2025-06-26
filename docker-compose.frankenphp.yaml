@@ -10,7 +10,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./src:/app/public
+      - ./src/frankenphp:/app/public
       - ./frankenphp/Caddyfile:/etc/caddy/Caddyfile
     environment:
       - SERVER_NAME=:80
