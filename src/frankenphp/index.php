@@ -28,19 +28,19 @@ do {
             // Ini akan menjalankan file yang sesuai dengan URL yang diakses.
             switch ($path) {
                 case '/':
-                case '/index':
+                case '/index.php':
                     require __DIR__ . '/index.php';
                     break;
         
-                case '/create':
+                case '/create.php':
                     require __DIR__ . '/create.php';
                     break;
                     
-                case '/edit':
+                case '/edit.php':
                     require __DIR__ . '/edit.php';
                     break;
         
-                case '/delete':
+                case '/delete.php':
                     require __DIR__ . '/delete.php';
                     break;
                 
