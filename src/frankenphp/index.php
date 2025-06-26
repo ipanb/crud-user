@@ -18,8 +18,6 @@ echo "PHP Worker siap menerima permintaan...\n";
 do {
     $running = frankenphp_handle_request(
         function() {
-            require __DIR__ . '/config.php';
-            require __DIR__ . '/functions.php';
             // Dapatkan path dari permintaan, contoh: '/', '/create.php', '/edit.php?id=1'
             $requestUri = $_SERVER['REQUEST_URI'];
             $path = parse_url($requestUri, PHP_URL_PATH);
@@ -41,7 +39,7 @@ do {
                     require __DIR__ . '/pages/edit.php';
                     break;
         
-                case '/delet':
+                case '/delete':
                     require __DIR__ . '/pages/delete.php';
                     break;
                 

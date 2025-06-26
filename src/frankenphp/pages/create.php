@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-require_once 'header.php';
+include 'header.php';
 ?>
 
 <div class="row justify-content-center">
@@ -131,4 +131,4 @@ require_once 'header.php';
     </div>
 </div>
 
-<?php require_once 'footer.php'; ?>
+<?php include 'footer.php'; ?>

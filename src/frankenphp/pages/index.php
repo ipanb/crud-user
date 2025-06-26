@@ -2,7 +2,7 @@
 // Ambil semua data user
 $users = getAllUsers($pdo);
 
-require_once 'header.php';
+include 'header.php';
 ?>
 
 <div class="row">
@@ -88,4 +88,4 @@ require_once 'header.php';
     </div>
 </div>
 
-<?php require_once 'footer.php'; ?>
+<?php include 'footer.php'; ?>
