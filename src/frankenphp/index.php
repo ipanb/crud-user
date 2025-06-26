@@ -6,8 +6,6 @@
 // ===================================================
 // Muat semua file konfigurasi, fungsi, atau autoloader yang diperlukan.
 // Ini akan tetap ada di memori untuk semua permintaan berikutnya.
-require_once __DIR__ . '/config.php';
-require_once __DIR__ . '/functions.php';
 // Jika Anda menggunakan Composer, baris di bawah ini sangat penting:
 // require_once __DIR__ . '/vendor/autoload.php';
 
@@ -18,8 +16,10 @@ echo "PHP Worker siap menerima permintaan...\n";
 // =================================================================
 // Fungsi \FrankenPhp\loop() akan menangani permintaan HTTP yang masuk.
 do {
-	$running = frankenphp_handle_request(
+    $running = frankenphp_handle_request(
         function() {
+            require_once __DIR__ . '/config.php';
+            require_once __DIR__ . '/functions.php';
             // Dapatkan path dari permintaan, contoh: '/', '/create.php', '/edit.php?id=1'
             $requestUri = $_SERVER['REQUEST_URI'];
             $path = parse_url($requestUri, PHP_URL_PATH);
