@@ -1,10 +1,6 @@
 <?php
 // Cek apakah ID ada
 // Ambil semua data user
-global $pdo;
-if(!isset($pdo)) {
-    $pdo = connectDatabase();
-}
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     setMessage('danger', 'ID user tidak valid');
     header('Location: index.php');
@@ -12,7 +8,7 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 }
 
 $id = (int)$_GET['id'];
-$user = getUserById($pdo, $id);
+$user = getUserById($id);
 
 // Cek apakah user ditemukan
 if (!$user) {
@@ -48,9 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'alamat' => $alamat
         ];
         
-        if (updateUser($pdo, $id, $data)) {
+        if (updateUser($id, $data)) {
             setMessage('success', 'User berhasil diperbarui!');
-            header('Location: index.php');
+            header('Location: index');
             exit;
         } else {
             $errors[] = "Terjadi kesalahan saat memperbarui data";

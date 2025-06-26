@@ -15,7 +15,7 @@ include 'header.php';
                         <h5 class="mb-0">Data User</h5>
                     </div>
                     <div class="col-auto">
-                        <a href="create.php" class="btn btn-light btn-sm">
+                        <a href="create" class="btn btn-light btn-sm">
                             Tambah User
                         </a>
                     </div>
@@ -26,7 +26,7 @@ include 'header.php';
                     <div class="text-center py-5">
                         <h5 class="text-muted">Belum ada data user</h5>
                         <p class="text-muted">Silakan tambah user baru untuk memulai</p>
-                        <a href="create.php" class="btn btn-primary">
+                        <a href="create" class="btn btn-primary">
                             Tambah User Pertama
                         </a>
                     </div>
@@ -65,7 +65,7 @@ include 'header.php';
                                             </td>
                                             <td class="text-center">
                                                 <div class="btn-group" role="group">
-                                                    <a href="edit.php?id=<?= $user['id'] ?>"
+                                                    <a href="edit?id=<?= $user['id'] ?>"
                                                         class="btn btn-warning btn-action"
                                                         title="Edit">
                                                         Edit

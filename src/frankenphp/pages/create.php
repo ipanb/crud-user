@@ -1,9 +1,5 @@
 <?php
 // Ambil semua data user
-global $pdo;
-if(!isset($pdo)) {
-    $pdo = connectDatabase();
-}
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -31,9 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'alamat' => $alamat
         ];
         
-        if (createUser($pdo, $data)) {
+        if (createUser($data)) {
             setMessage('success', 'User berhasil ditambahkan!');
-            header('Location: index.php');
+            header('Location: index');
             exit;
         } else {
             $errors[] = "Terjadi kesalahan saat menyimpan data";
@@ -123,7 +119,7 @@ include 'header.php';
                     </div>
                     
                     <div class="d-flex justify-content-between">
-                        <a href="index.php" class="btn btn-secondary">
+                        <a href="index" class="btn btn-secondary">
                             <i class="fas fa-arrow-left me-1"></i>Kembali
                         </a>
                         <button type="submit" class="btn btn-success">
