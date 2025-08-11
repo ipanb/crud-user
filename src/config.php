@@ -1,9 +1,9 @@
 <?php
 // Konfigurasi database
-$host = 'mysql';  // Nama container MySQL
-$dbname = 'app_database';
-$username = 'app_user';
-$password = 'app_password_123';
+$host = 'localhost';  // Nama container MySQL
+$dbname = 'crud_user';
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
